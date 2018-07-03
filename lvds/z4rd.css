@@ -1,0 +1,49 @@
+form {
+	margin: 0px;
+	padding: 0px;
+	}
+input {
+	background:	#E0E0E0;
+	color:		#000000;
+	font:		8pt Verdana;
+	text-align:	center;
+	}
+td {
+	font:		8pt Verdana;
+	border:		#000000 solid 1px;
+	background:	#ffffff;
+	padding:	4px;
+	}
+.head {
+	font:		8pt Verdana;
+	border:		#000000 solid 1px;
+	background:	#FF0000 url("images/head.png");
+	padding:	0px;
+	text-align:	center middle;
+	}
+.minihead {
+	font:		8pt Verdana;
+	border:		#000000 solid 1px;
+	background:	#FF8080 url("images/minihead.png");
+	padding:	0px;
+	text-align:	center center;
+	}
+
+table {
+	border:		#000000 solid 1px;
+	border-collapse: collapse;
+	}
+.preview {
+	background:	url("images/previewbgt.png");
+	}
+body {
+	background:	#EEEEEE url("bg.png");
+	font:		8pt Verdana;
+	color:		#000000;
+	}
+.preview a {
+	color:		#FFFFFF;
+	}
+.radio {
+	border:		none;
+	}

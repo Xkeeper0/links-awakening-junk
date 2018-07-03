@@ -1,0 +1,65 @@
+BMF was playing around with parts of my site and wondered what text was in that
+chest. So, after showing him...
+
+BMF: "Huh. I wonder if they ran out of space and just overwrote the Bow's
+      message."
+Xkeeper: "Hm, maybe..."
+
+
+Sure enough... here's a text dump of the ROM, and a list of items in chests:
+		
+0x00    => "Power Bracelet",
+0x01    => "Mirror Shield",
+0x02    => "Bow",
+0x03    => "Hookshot",
+0x04    => "Fire Rod",
+0x05    => "Pegasus Boots",
+0x06    => "Ocarina",
+
+You found the   
+Power Bracelet! 
+At last, you can
+pick up pots and
+stones!
+
+You got your    
+Shield back!    
+You can use it  
+to flip enemies!
+
+Ahhh... Yess... 
+That dust was so
+refreshing...   
+For that, I'll  
+tell you a hint!
+Use a Bomb in a 
+place where the 
+sand swallows   
+you... There is 
+a treat on the  
+other side of   
+the wall... Bye!
+
+You've got the  
+Hook Shot!  Its 
+chain stretches 
+long when you   
+use it!
+
+You've got the  
+Magic Rod!  Now 
+you can burn    
+things! Burn it!
+Burn, baby burn!
+
+You've got the  
+Pegasus Boots!  
+If you hold down
+the Button, you 
+can dash!
+
+You've got the  
+Ocarina!  You   
+should learn to 
+play many songs!
+

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Some broken utility that doesn't work</title>
+	<style type="text/css">
+		input {
+			border:		#000000 solid 1px;
+			background:	#E0E0E0;
+			color:		#000000;
+			font:		8pt Verdana;
+			}
+		td {
+			font:		8pt Verdana;
+			border:		#A0A0A0 solid 1px;
+			background:	#FFFFFF;
+			}
+		table {
+			border:		#000000 solid 1px;
+			background:	#FFFFFF;
+			}
+		.preview {
+			background:	#909090;
+				//url("gradientbg.png");
+			}
+		body {
+			background:	#EEEEEE; //url("gradientbg2.png");
+			font:		8pt Verdana;
+			color:		#000000;
+			}
+	</style>
+</head>
+
+<body>
+
+<?php
+print "test";
+print "<form action=\"utility.php\" method=\"post\">
+
+TEST YOU MORONS!
+
+<input type=text size=3 maxlength=2 name=\"tile0-0\" value=\"". $tile0-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-0\" value=\"". $tile1-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-0\" value=\"". $tile2-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-0\" value=\"". $tile3-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-0\" value=\"". $tile4-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-0\" value=\"". $tile5-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-0\" value=\"". $tile6-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-0\" value=\"". $tile7-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-0\" value=\"". $tile8-0 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-0\" value=\"". $tile9-0 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-1\" value=\"". $tile0-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-1\" value=\"". $tile1-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-1\" value=\"". $tile2-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-1\" value=\"". $tile3-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-1\" value=\"". $tile4-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-1\" value=\"". $tile5-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-1\" value=\"". $tile6-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-1\" value=\"". $tile7-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-1\" value=\"". $tile8-1 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-1\" value=\"". $tile9-1 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-2\" value=\"". $tile0-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-2\" value=\"". $tile1-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-2\" value=\"". $tile2-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-2\" value=\"". $tile3-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-2\" value=\"". $tile4-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-2\" value=\"". $tile5-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-2\" value=\"". $tile6-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-2\" value=\"". $tile7-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-2\" value=\"". $tile8-2 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-2\" value=\"". $tile9-2 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-3\" value=\"". $tile0-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-3\" value=\"". $tile1-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-3\" value=\"". $tile2-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-3\" value=\"". $tile3-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-3\" value=\"". $tile4-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-3\" value=\"". $tile5-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-3\" value=\"". $tile6-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-3\" value=\"". $tile7-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-3\" value=\"". $tile8-3 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-3\" value=\"". $tile9-3 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-4\" value=\"". $tile0-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-4\" value=\"". $tile1-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-4\" value=\"". $tile2-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-4\" value=\"". $tile3-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-4\" value=\"". $tile4-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-4\" value=\"". $tile5-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-4\" value=\"". $tile6-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-4\" value=\"". $tile7-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-4\" value=\"". $tile8-4 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-4\" value=\"". $tile9-4 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-5\" value=\"". $tile0-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-5\" value=\"". $tile1-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-5\" value=\"". $tile2-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-5\" value=\"". $tile3-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-5\" value=\"". $tile4-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-5\" value=\"". $tile5-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-5\" value=\"". $tile6-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-5\" value=\"". $tile7-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-5\" value=\"". $tile8-5 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-5\" value=\"". $tile9-5 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-6\" value=\"". $tile0-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-6\" value=\"". $tile1-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-6\" value=\"". $tile2-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-6\" value=\"". $tile3-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-6\" value=\"". $tile4-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-6\" value=\"". $tile5-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-6\" value=\"". $tile6-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-6\" value=\"". $tile7-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-6\" value=\"". $tile8-6 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-6\" value=\"". $tile9-6 ."\"> 
+<input type=text size=3 maxlength=2 name=\"tile0-7\" value=\"". $tile0-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile1-7\" value=\"". $tile1-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile2-7\" value=\"". $tile2-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile3-7\" value=\"". $tile3-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile4-7\" value=\"". $tile4-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile5-7\" value=\"". $tile5-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile6-7\" value=\"". $tile6-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile7-7\" value=\"". $tile7-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile8-7\" value=\"". $tile8-7 ."\"> <input type=text size=3 maxlength=2 name=\"tile9-7\" value=\"". $tile9-7 ."\"> 
+
+</form>
+
+</body>
+</html>";
+
+?>

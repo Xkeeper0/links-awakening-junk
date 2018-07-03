@@ -1,0 +1,58 @@
+02:03'34" cooltoby9: for the palette you do & 0xF
+02:03'42" cooltoby9: and for flipdata & 0xF0
+
+public override int GetBlockFlipOffset() { 
+	return Program.myROM.GetOffset2b(0x69E76 + mapId * 2, Program.myROM.GetByte(0x6A476 + mapId)); 
+}
+
+
+
+Related to special objects:
+Seems F5 is hard-coded, F6 and above aren't. More investigating needs to be done
+                    if (value == 0xF5)
+                    {
+                        Set(x, y, ref target, 0x25, true);
+                        Set(x + 1, y, ref target, 0x26, true);
+                        Set(x, y + 1, ref target, 0x27, true);
+                        Set(x + 1, y + 1, ref target, 0x28, true);
+                    }
+                    else
+                    {
+                        int offset = GetOffset2b((value - 0xF5) * 2 + 0x93577, 0x24);
+                        while (GetByte(offset) != 0x1 || GetByte(offset + 3) != 0x11)
+                            offset++;
+                        int offOrder = GetOffset2b(offset + 1, 0x24);
+                        int offTiles = GetOffset2b(offset + 4, 0x24);
+                        while (GetByte(offOrder) != 0xFF)
+                        {
+                            byte C = GetByte(offOrder++);
+                            Set(x + (C & 0xF), y + ((C & 0xF0) >> 4), ref target, GetByte(offTiles++), true);
+                        }
+                    }
+
+
+
+"Special" maps: Hardcoded, it seems, but here:
+Will have to look later for this data.
+        private int GetMapOffset()
+        {
+            if (special)
+            {
+                int ptr = -1;
+                switch (mapId)
+                {
+                    case 0x06: ptr = 0x5040; break;
+                    case 0x0E: ptr = 0x5090; break;
+                    case 0x1B: ptr = 0x50E0; break;
+                    case 0x2B: ptr = 0x5130; break;
+                    case 0x79: ptr = 0x5180; break;
+                    case 0x8C: ptr = 0x51D0; break;
+                }
+                if(ptr > 0)
+                    return 0x98000 + ptr;
+            }
+            if (mapId < 0xCC)
+                return 0x98000 + 0x50 * mapId;
+            else
+                return 0x9C000 + 0x50 * (mapId - 0xCC);
+        }

@@ -1,0 +1,29 @@
+Things I still need to resolve:
+
+- Overworld (GBC) tile palettes
+- Overworld (GBC) tile flipping
+- Dungeon TSA data
+- Weird occurances (test.gbc shows an example of this between Marin and the right-screen house; same tileset, different palette/tileset somehow)
+
+
+Tileset (pots/stones/blocks):
+	0x805CA
+	One byte per submap (and such)
+	0xC8000 + (value - 0x40) * 0x100
+	Example 79 -> 39
+
+Floor tiles:
+	0x80589
+	1 byte per submap
+	0xB0000 + (value * 0x100)
+	Example 4C, 62
+
+82FBB is a tileset table
+	Take the value from the table, add 0x50 to it
+	Bxx00 is the tileset
+	Example value 0x00 -> 0x50 -> 0xB5000
+
+805A9
+	Bxx00
+	Examples 40, 6C
+	2 rows ea
