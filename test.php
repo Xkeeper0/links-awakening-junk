@@ -34,7 +34,7 @@
 
 //	ini_set("memory_limit", "256M");
 
-	$fname	= "ladx-g.gbc";
+	$fname	= "la12.gbc";
 	$rom	= file_get_contents($fname);
 
 	$base['roommap']		= 0x050220;
