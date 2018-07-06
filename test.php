@@ -27,6 +27,10 @@
 		color:	#608;
 		background:	#fcf;
 		}
+	.c {
+		text-align: center;
+	}
+
 </style>
 <?php
 
@@ -154,7 +158,7 @@
 	print "</table>";
 */
 
-	echo "<table>
+	echo "<div style='float: right;'><table style='text-align: center;'>
 		<tr><td>". roomlayout( 0) ."</td><td>". minimap( 0) ."</td></tr>
 		<tr><td>". roomlayout( 1) ."</td><td>". minimap( 1) ."</td></tr>
 		<tr><td>". roomlayout( 2) ."</td><td>". minimap( 2) ."</td></tr>
@@ -163,14 +167,14 @@
 		<tr><td>". roomlayout( 5) ."</td><td>". minimap( 5) ."</td></tr>
 		<tr><td>". roomlayout( 6) ."</td><td>". minimap( 6) ."</td></tr>
 		<tr><td>". roomlayout( 7) ."</td><td>". minimap( 7) ."</td></tr>
-		<tr><td>". roomlayout( 8) ."</td><td style=\"background: #666;\">&nbsp;</td></tr>
-		<tr><td>". roomlayout( 9) ."</td><td style=\"background: #666;\">&nbsp;</td></tr>
-		<tr><td>". roomlayout(10) ."</td><td style=\"background: #666;\">&nbsp;</td></tr>
+		<tr><td>". roomlayout( 8) ."</td><td style=\"background: #666;\">it's the<br>wind fish's egg</td></tr>
+		<tr><td>". roomlayout( 9) ."</td><td style=\"background: #666;\">unused submap,<br>weird</td></tr>
+		<tr><td>". roomlayout(10) ."</td><td style=\"background: #666;\">cave submap</td></tr>
 		<tr><td>". roomlayout(11) ."</td><td>". minimap( 9) ."</td></tr>
 		<tr><td>". roomlayout(12) ."</td><td>". minimap( 8) ."</td></tr>
-		</table><br><br>";
+		</table></div>
+		";
 
-	print roomlayout(10);
 
 /*
 	print "<br><br><table><tr>";
@@ -186,52 +190,32 @@
 	print "</tr></table>";
 */
 
-	print "<br><br><br>";
-
 	for ($b	= 0; $b <= 3; $b++) {
 
-		print "<table>
-		<td colspan=16 style=\"background: #aaf; text-align: center;\"><b>bank - $b - pointers</b></td><tr>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
+		print "<table class='c'>
+		<td colspan=16 style=\"background: #aaf; text-align: center;\"><b>group $b - rooms</b></td><tr>
 		";
 
 		$max	= ($num['pointers'][$b] ? $num['pointers'][$b] : 0xFF);
 		for ($i	= 0; $i <= $max; $i++) {
-			if (!($i % 4)) echo "<tr>";
-			if ($b == 0 && $_SERVER['REMOTE_ADDR'] == $ip) {
-				$simg	= "<img src=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&saveas=". dechex($i) ."&tset=". $tileset[$b][$i] ."\">";
-				if (!$_GET['uhoh']) $simg	= "
-					<a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&saveall=". hexout($i) ."&anim=1&noimg=1\">A</a>
-					<a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&saveas=". dechex($i) ."\">S</a>
-					";
-			} else {
-				$simg	= "&nbsp;";
-			}
+			if (!($i % 0x10)) echo "<tr>";
+
 			if ($offset['room'][$b][$i + 1]) {
-				$dist	= str_replace(" ", "&nbsp;", sprintf("%4d", $offset['room'][$b][$i + 1] - $offset['room'][$b][$i]));
+				$distv	= $offset['room'][$b][$i + 1] - $offset['room'][$b][$i];
+				$dist	= sprintf("%4d", $distv);
+				if ($distv >= 1000) {
+					$dist	= "<span title='$dist'>*</span>";
+				}
+				if ($distv <= -100) {
+					$dist	= "<span title='$dist'>-*</span>";
+				}
+
 			} else {
-				$dist	= "----";
+				$dist	= "-";
 			}
-			echo "<th>". str_pad(dechex($i), 2, "0", STR_PAD_LEFT) ."</th><td>
-			". str_pad(dechex($pointer['room'][$b][$i][0]), 2, "0", STR_PAD_LEFT) ." 
-			". str_pad(dechex($pointer['room'][$b][$i][1]), 2, "0", STR_PAD_LEFT) ."</td>
-			<td><a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."\">". str_pad(dechex($offset['room'][$b][$i]), 6, "0", STR_PAD_LEFT) ."</a> $dist". (true || $_SERVER['REMOTE_ADDR'] == $ip ? " <a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&noimg=1\">I</a>" : "") ."
-</td><td style=\"background: #ddd; text-align: center;\">$simg</td>
+
+			$thispointer	= sprintf("%04x", $pointer['room'][$b][$i][0] + ($pointer['room'][$b][$i][1] << 8));
+			echo "<td><a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&noimg=1\" title='$thispointer = ". sprintf("%06x", $offset['room'][$b][$i]) ."'>". sprintf("%02x", $i) ."</a><br><small>$dist</small></td>
 	";
 		}
 
@@ -244,35 +228,20 @@
 	for ($b	= 0; $b <= 3; $b++) {
 
 		print "<table>
-		<td colspan=16 style=\"background: #aaf; text-align: center;\"><b>enemies / bank - $b - pointers</b></td><tr>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
-		<td style=\"background: #ccf; text-align: center;\"><b>#</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>ptr</b></td>
-		<td style=\"background: #ccf; text-align: center;\"><b>rom</b></td>
-		<td style=\"background: #99c; text-align: center;\">&nbsp;</td>
+		<td colspan=16 style=\"background: #aaf; text-align: center;\"><b>group $b - enemies</b></td><tr>
 		";
 
 		for ($i	= 0; $i <= 0xFF; $i++) {
-			if (!($i % 4)) echo "<tr>";
+			if (!($i % 0x10)) echo "<tr>";
+			$thispointer	= $pointer['sprites'][$b][$i][0] + ($pointer['sprites'][$b][$i][1] << 8);
 
-			echo "<th>". str_pad(dechex($i), 2, "0", STR_PAD_LEFT) ."</th><td>
-			". str_pad(dechex($pointer['sprites'][$b][$i][0]), 2, "0", STR_PAD_LEFT) ." 
-			". str_pad(dechex($pointer['sprites'][$b][$i][1]), 2, "0", STR_PAD_LEFT) ."</td>
-			<td>
-			<a href=\"enemies.php?offset=0x". dechex($offset['sprites'][$b][$i]) ."&room=". hexout($i) ."&m=$b\">". str_pad(dechex($offset['sprites'][$b][$i]), 6, "0", STR_PAD_LEFT) ."</a>
-			</td><td style=\"background: #ddd; text-align: center;\">&nbsp;</td>
-	";
+			printf("<td><a href='enemies.php?offset=0x%x&room=%x&m=%d' title='%04x = %06x'>%02x</td>\n",
+				$offset['sprites'][$b][$i],
+				$i,
+				$b,
+				$thispointer,
+				$offset['sprites'][$b][$i],
+				$i);
 		}
 
 		print "</table><br><br>";
@@ -293,10 +262,10 @@
 		";
 
 		for ($i	= 0; $i <= 0x8; $i++) {
-			echo "<tr><td>". str_pad(dechex($i), 2, "0", STR_PAD_LEFT) ."</td><td>
-			". str_pad(dechex($pointer['roomtemplates'][$i][$t][0]), 2, "0", STR_PAD_LEFT) ." 
-			". str_pad(dechex($pointer['roomtemplates'][$i][$t][1]), 2, "0", STR_PAD_LEFT) ."</td>
-			<td>". str_pad(dechex($offset['roomtemplates'][$i][$t]), 6, "0", STR_PAD_LEFT) ."</td>
+			echo "<tr><td>". sprintf("%02x", $i) ."</td><td>
+			". sprintf("%02x", $pointer['roomtemplates'][$i][$t][0]) ." 
+			". sprintf("%02x", $pointer['roomtemplates'][$i][$t][1]) ."</td>
+			<td>". sprintf("%06x", $offset['roomtemplates'][$i][$t]) ."</td>
 		";
 		}
 		print "</table></td>";
@@ -339,10 +308,10 @@
 			$style	= "";
 			if ($data == 0) $style	= " style=\"background: #888\"";
 			if ($big) {
-//				$ret	.= "<td><img src=\"http://artemis251.fobby.net/image/maps/underworld2/02". strtoupper(str_pad(dechex($data), 2, "0", STR_PAD_LEFT)) .".GIF\"></td>";
-				$ret	.= "<td><img src=\"extra/drawn/". strtoupper(str_pad(dechex($data), 2, "0", STR_PAD_LEFT)) .".png\"></td>";
+//				$ret	.= "<td><img src=\"http://artemis251.fobby.net/image/maps/underworld2/02". strtoupper(sprintf("%02x", $data)) .".GIF\"></td>";
+				$ret	.= "<td><img src=\"extra/drawn/". strtoupper(sprintf("%02x", $data)) .".png\"></td>";
 			} else {
-				$ret	.= "<td$style>". str_pad(dechex($data), 2, "0", STR_PAD_LEFT) ."</td>";
+				$ret	.= "<td$style>". sprintf("%02x", $data) ."</td>";
 			}
 
 
@@ -371,7 +340,7 @@
 			if ($data == 0x7d) $style	= " style=\"background: #888\"";
 			if ($data == 0xee) $style	= " style=\"background: #fbb\"";
 			if ($data == 0xed) $style	= " style=\"background: #ed9\"";
-			$ret	.= "<td$style>". str_pad(dechex($data), 2, "0", STR_PAD_LEFT) ."</td>";
+			$ret	.= "<td$style>". sprintf("%02x", $data) ."</td>";
 
 		}
 
@@ -419,7 +388,6 @@
 
 
 	function hexout($v, $l = 2) {
-		return str_pad(strtoupper(dechex($v)), $l, "0", STR_PAD_LEFT);
+		return sprintf("%0{$l}x", $v);
 	}
 
-?>
