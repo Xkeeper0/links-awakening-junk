@@ -276,9 +276,8 @@
 
 	$m		= min(max(intval($_GET['m']), 0), 3);
 
-	$start	= $_GET['offset'] += 0;
-	$room	= $_GET['room'];
-	$room	= hexdec($room);
+	$start	= hexdec($_GET['offset']);
+	$room	= hexdec($_GET['room']);
 	$rx		= ($room % 16) * $xsize;
 	$ry		= floor($room / 16) * $ysize;
 
