@@ -33,8 +33,7 @@
 		shell_exec('del /q ..\..\anim\x\*.*');
 	}
 
-	$readoffset	= $_GET['offset'] += 0;
-//	$readoffset	= hexdec($readoffset);
+	$readoffset	= hexdec($_GET['offset']);
 
 	if ($_GET['t']) {
 		$romdata	= file_get_contents("../test.gbc");
@@ -113,7 +112,7 @@
 - \"Special\" objects (doors, enterances)
 - Graphics or palette types</b>
 
-Animation:     <font color=ffa0a0>". hexout($animation) ."</font>
+Animation:      <font color=ffa0a0>". hexout($animation) ."</font>
 Room template:  <font color=ffa0a0>$template</font> (". hexout($tempfloor) .")
 Floor tile:     <font color=ffa0a0>$floor". ($_GET['forcefloor'] ? " (override: ". $_GET['forcefloor'] .")" : "") ."</font>
 
