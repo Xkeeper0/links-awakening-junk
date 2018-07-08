@@ -2,7 +2,7 @@
 
 	namespace LinksAwakening;
 
-	class RoomData {
+	abstract class RoomData {
 
 		// Most of this is just reverse engineered from the format of the data,
 		// not any sort of disassembly work
@@ -42,23 +42,21 @@
 
 		public function step() {
 			$byte1	= $this->_rom->getI();
-			printf("%02x ", $byte1);
 
 			if ($byte1 === 0xFE) {
-				print "end of data\n";
+				print "End of room data\n";
 				return false;
 			}
 
-			$temp		= $byte1 & 0xF0;
+			$special		= $byte1 & 0xF0;
 			$vertical	= false;
-			switch ($temp) {
+			switch ($special) {
 				case self::SPECIAL_WARPDATA:
 					$byte2		= $this->_rom->getI();
 					$byte3		= $this->_rom->getI();
 					$byte4		= $this->_rom->getI();
 					$byte5		= $this->_rom->getI();
 					printf("5 byte warp data - %02x %02x %02x %02x %02x\n", $byte1, $byte2, $byte3, $byte4, $byte5);
-					$this->_rom->getS(4);
 					break;
 
 				case self::LENGTH_VERTICAL:

@@ -1,5 +1,5 @@
 <?php
- 
+ chdir("../extra");
  $n = stripslashes($_GET['n']);
 
  $n2	= explode(",", $n);
@@ -16,7 +16,7 @@ $s1	= $_GET['s1'];
 $s2	= $_GET['s2'];
 
 if ($_GET['d']) {
-	$gfx=ImageCreateFromPNG("level8.png");  
+	$gfx=ImageCreateFromPNG("level8.png");
 } else {
 	include 'acmlm/tiles2.php';
 }
@@ -28,7 +28,7 @@ $y = 0;
 
 for($i = 0; $i < 80; $i++){
 	$thistile = $na[$i];
-	
+
 	if($thisline == 10) {
 		$thisline = 0;
 		$y = $y + 1;
@@ -51,7 +51,7 @@ for($i = 0; $i < 80; $i++){
 	ImageCopy($img,$gfx,$thisline*16,$y*16,$tilex*16,$tiley*16,16,16);
 	if ($over) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 255, 0, 70));
 	if ($over2) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 255, 255, 0, 70));
-	if ($over3) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 0, 0, 60));
+	if ($over3) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 0, 255, 90));
 	//if ($thistile == 0x00) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 128, 0, 0, 80));
 	$over	= false;
 	$over2	= false;

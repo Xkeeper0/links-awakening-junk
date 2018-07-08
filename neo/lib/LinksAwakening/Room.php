@@ -2,7 +2,7 @@
 
 	namespace LinksAwakening;
 
-	class Room {
+	abstract class Room {
 
 		const	BASE_TILE			= 0x400;	// Used to color floor/template tiles
 		const	NEW_TILE			= 0x200;	// Used to color tiles written over floor/template
@@ -68,13 +68,24 @@
 			}
 		}
 
+		public function getTile($x, $y, $withFlags = false) {
+			$x	= $x & 0xF;
+			$y	= $y & 0xF;
+			if ($y >= self::SIZE_H || $x >= self::SIZE_W) {
+				return null;
+			}
+
+			#return ($withFlags ? $this->_tiles[$y][$x] : $this->_tiles[$y][$x] & self::TILE_MASK);
+			return $this->_tiles[$y][$x] & self::TILE_MASK;
+		}
+
 		protected function _place($x, $y, $tile) {
 			// X and Y can wrap around by drawing at the right edge (15).
 			// Mostly used for trees and other large objects that need to
 			// be off the left edge.
 			$x	= $x & 0x0F;
 			$y	= $y & 0x0F;
-			if ($y > self::SIZE_H || $x > self::SIZE_W) {
+			if ($y >= self::SIZE_H || $x >= self::SIZE_W) {
 				// don't draw off the room, that'd be silly.
 				return;
 			}
@@ -91,24 +102,44 @@
 		}
 
 		public function addObject2($x, $y, $tile) {
-			printf("  y=%2d  x=%2d  tile=%02x\n", $x, $y, $tile);
+			#printf("   y=%02d  x=%02d  tile=%02x\n", $x, $y, $tile);
 			$this->flush();
-			$this->_place($x, $y, $tile);
+			$macro	= $this->_handleMacro($x, $y, $tile);
+			if ($macro === false) {
+				// If it wasn't a macro, plop it down as-is
+				$this->_place($x, $y, $tile);
+			}
 		}
 
 		public function addObject3($x, $y, $tile, $length, $vertical = false) {
 			$this->flush();
 			for ($i = 0; $i < $length; $i++) {
-				printf("  x=%2d  y=%2d  tile=%02x\n", $x, $y, $tile);
-				$this->_place($x, $y, $tile);
-				if ($vertical) {
-					$y++;
+				#printf("  x=%2d  y=%2d  tile=%02x\n", $x, $y, $tile);
+
+				$macro	= $this->_handleMacro($x, $y, $tile);
+				if ($macro === false) {
+					$this->_place($x, $y, $tile);
+					$mx	= 1;
+					$my	= 1;
 				} else {
-					$x++;
+					$mx	= $macro['w'];
+					$my	= $macro['h'];
+				}
+
+				if ($vertical) {
+					$y += $my;
+				} else {
+					$x += $my;
 				}
 			}
 		}
 
+
+		abstract protected function _handleMacro($x, $y, $tile);
+
+		protected function _getMacroSize($macro) {
+			return ['w' => count($macro[0]), 'h' => count($macro)];
+		}
 
 		public function dumpText($final = false) {
 			if ($final) {
