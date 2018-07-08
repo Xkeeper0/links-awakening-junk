@@ -41,9 +41,7 @@
 			if (!isset($this->_macros[$tile])) {
 				return false;
 			}
-			#return false;
 
-			printf("macro tile %02x @ %x %x\n", $tile, $x, $y);
 			$tiles			= $this->_macros[$tile]['macro'];
 			$replacements	= (isset($this->_macros[$tile]['replace']) ? $this->_macros[$tile]['replace'] : null);
 

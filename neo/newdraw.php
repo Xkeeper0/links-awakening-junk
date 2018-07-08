@@ -49,9 +49,9 @@ for($i = 0; $i < 80; $i++){
 	$tilex = $thistile % 16;
 
 	ImageCopy($img,$gfx,$thisline*16,$y*16,$tilex*16,$tiley*16,16,16);
-	if ($over) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 255, 0, 70));
-	if ($over2) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 255, 255, 0, 70));
-	if ($over3) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 0, 255, 90));
+	if ($over2) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 255, 0, 70));
+	if ($over) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 255, 255, 0, 70));
+	if ($over3) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 0, 0, 255, 100));
 	//if ($thistile == 0x00) ImageFilledRectangle($img,$thisline*16,$y*16,$thisline*16+15,$y*16+15,imagecolorallocatealpha($img, 128, 0, 0, 80));
 	$over	= false;
 	$over2	= false;

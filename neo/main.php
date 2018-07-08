@@ -2,6 +2,10 @@
 
 	require_once("includes.php");
 
+	if (!IS_CLI) {
+		die("sorry, this is for cli only\n");
+	}
+
 	try {
 		$file	= file_get_contents("../la12.gbc");
 		$rom	= new Utils\DataSeeker($file);

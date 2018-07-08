@@ -214,13 +214,19 @@
 				$dist	= "-";
 			}
 
+			if ($b === 0 && isset($_GET['neo'])) {
+				$neourl	= "neo/";
+			} else {
+				$neourl	= "extra/loader.php";
+			}
+
 			$thispointer	= sprintf("%04x", $pointer['room'][$b][$i][0] + ($pointer['room'][$b][$i][1] << 8));
-			echo "<td><a href=\"extra/loader.php?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&noimg=1\" title='$thispointer = ". sprintf("%06x", $offset['room'][$b][$i]) ."'>". sprintf("%02x", $i) ."</a><br><small>$dist</small></td>
+			echo "<td><a href=\"$neourl?offset=0x". dechex($offset['room'][$b][$i]) ."&tset=". $tileset[$b][$i] ."&noimg=1\" title='$thispointer = ". sprintf("%06x", $offset['room'][$b][$i]) ."'>". sprintf("%02x", $i) ."</a><br><small>$dist</small></td>
 	";
 		}
 
 		print "</table><br><br>";
-	
+
 	}
 
 
@@ -245,11 +251,11 @@
 		}
 
 		print "</table><br><br>";
-	
+
 	}
 
 
-//	/* 
+//	/*
 	$ptypes	= array("l", "p", "t");
 	print "<table><tr><td colspan=3 style=\"background: #88d; text-align: center;\"><b>template pointers</b></td><tr>";
 	foreach ($ptypes as $t) {
@@ -263,7 +269,7 @@
 
 		for ($i	= 0; $i <= 0x8; $i++) {
 			echo "<tr><td>". sprintf("%02x", $i) ."</td><td>
-			". sprintf("%02x", $pointer['roomtemplates'][$i][$t][0]) ." 
+			". sprintf("%02x", $pointer['roomtemplates'][$i][$t][0]) ."
 			". sprintf("%02x", $pointer['roomtemplates'][$i][$t][1]) ."</td>
 			<td>". sprintf("%06x", $offset['roomtemplates'][$i][$t]) ."</td>
 		";
@@ -299,7 +305,7 @@
 
 		$ret	.= "<table><td colspan=8 style=\"background: #aaf; text-align: center;\"><b>layout ". ($num != -1 ? "$num - " : "") ." ". dechex($base) ."</b></td><tr>";
 		for ($r = 0; $r < 64; $r++) {
-			
+
 			if (!($r % 8)) $ret	.= "<tr>";
 
 			$ofs	= $base + $r;
@@ -330,7 +336,7 @@
 
 		$ret	.= "<table><td colspan=8 style=\"background: #aaf; text-align: center;\"><b>minimap ". ($num != -1 ? "$num - " : "") ." ". dechex($base) ."</b></td><tr>";
 		for ($r = 0; $r < 64; $r++) {
-			
+
 			if (!($r % 8)) $ret	.= "<tr>";
 
 			$ofs	= $base + $r;
@@ -356,19 +362,19 @@
 		return $base + $pointer1 + (($pointer2 - 0x40) << 8);
 
 	}
-		
+
 	function initroom($floor) {
 
 		return array_fill(0, 8, array_fill(0, 10, $floor));
 
 	}
 
-	
+
 	function parsetemplate($offset1, $offset2, $room) {
 		global $rom;
 
 		$rc		= 0;
-	
+
 		while (ord($rom{$offset1 + $rc}) != 0xFF && $rc <= 80) {
 			$val		= ord($rom{$offset1 + $rc});
 			$y			= ($val & 0xF0) >> 4;
@@ -382,7 +388,7 @@
 			$val		= ord($rom{$offset2 + $i});
 			$room[$pos[$i][0]][$pos[$i][1]]	= $val;
 		}
-		
+
 		return $room;
 	}
 
@@ -390,4 +396,3 @@
 	function hexout($v, $l = 2) {
 		return sprintf("%0{$l}x", $v);
 	}
-

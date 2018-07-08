@@ -48,6 +48,10 @@
 		}
 
 
+		public function getAnimation() {
+			return $this->_animation;
+		}
+
 		/**
 		 * Reset the "drawn over" flags for the map
 		 *
