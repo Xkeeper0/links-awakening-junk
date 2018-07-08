@@ -26,9 +26,9 @@
 				color:			#9f9;
 				}
 		</style>
-		
+
 		<body bgcolor=050515><pre><font color=9999ff>";
-	
+
 	if ($_GET['anim']) {
 		shell_exec('del /q ..\..\anim\x\*.*');
 	}
@@ -141,7 +141,7 @@ Floor tile:     <font color=ffa0a0>$floor". ($_GET['forcefloor'] ? " (override: 
 			$r	= char2hex($romdata[$o]);
 			$x	= floor($read / 16);
 			$y	= $read % 16;
-			
+
 			$o++;
 			$tile	= ord($romdata[$o]);
 			$r	.= " ". char2hex($romdata[$o]);
@@ -178,7 +178,7 @@ Floor tile:     <font color=ffa0a0>$floor". ($_GET['forcefloor'] ? " (override: 
 			$d2	= $d;
 			if ($d == 8) $d = "-";
 			else $d = "|";
-			
+
 			$o++;
 			$read	= char2dec($romdata[$o]);
 			$x	= floor($read / 16);
@@ -249,14 +249,14 @@ Type  Submap  Screen  PixelX  PixelY  ???? 1  ???? 2<font color=80ff80>
 		global $dungeon;
 		$f	= str_pad($f, 2, "0", STR_PAD_LEFT);
 		global $map;
-		for ($x = 0; $x < 8; $x++) 
-			for ($y = 0; $y < 10; $y++) 
+		for ($x = 0; $x < 8; $x++)
+			for ($y = 0; $y < 10; $y++)
 				$map[$x][$y] = $f;
 
 		if ($dungeon) {
-			if ($t < 9) {	
+			if ($t < 9) {
 				global $offset;
-				$map	= parsetemplate($offset['roomtemplates'][$t]['p'], $offset['roomtemplates'][$t]['t'], $map);				
+				$map	= parsetemplate($offset['roomtemplates'][$t]['p'], $offset['roomtemplates'][$t]['t'], $map);
 			}
 		}
 	}
@@ -296,7 +296,7 @@ Type  Submap  Screen  PixelX  PixelY  ???? 1  ???? 2<font color=80ff80>
 					$ys	= 2;
 					break;
 
-				case 0xf6:		// ?????
+				case 0xf6:		// big house north of rooster
 					$xs	= 5;
 					$ys	= 3;
 					break;
@@ -426,7 +426,7 @@ Type  Submap  Screen  PixelX  PixelY  ???? 1  ???? 2<font color=80ff80>
 		printf("Happy template parser! Given offsets [%06x] and [%06x]<br><br>", $offset1, $offset2);
 
 		$rc		= 0;
-	
+
 		while (ord($romdata{$offset1 + $rc}) != 0xFF && $rc <= 80) {
 			$val		= ord($romdata{$offset1 + $rc});
 			$y			= ($val & 0xF0) >> 4;
@@ -438,10 +438,10 @@ Type  Submap  Screen  PixelX  PixelY  ???? 1  ???? 2<font color=80ff80>
 
 		for($i = 0; $i <= $rc; $i++) {
 			$val		= ord($romdata{$offset2 + $i});
-			if ($val) 
+			if ($val)
 				$room[$pos[$i][0]][$pos[$i][1]]	= sprintf("%02x", $val);
 		}
-		
+
 		return $room;
 	}
 

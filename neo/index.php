@@ -82,11 +82,16 @@
 		}
 
 		$room	= $roomdata->getRoom();
-		$room->flush(true);
+		$room->flush();
 		$array	= $room->dumpArray();
+		$room->flush(true);
+		$array2	= $room->dumpArray();
 
-		print "end of level data</td><td>";
+		print "</td><td>";
 		print "<img src='newdraw.php?n=". implode(",", $array) ."$suffix'>";
+		print "</td></tr>";
+		print "<tr><td>&mdash;</td><td></td><td>";
+		print "<img src='newdraw.php?n=". implode(",", $array2) ."$suffix'>";
 		print "</td></tr></table>";
 
 	} catch (\Exception $e) {
